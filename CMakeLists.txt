@@ -1,5 +1,12 @@
 cmake_minimum_required(VERSION 3.19)
 
+# install dawn before anything else
+include(ExternalProject)
+
+set(DAWN_FETCH_DEPENDENCIES ON)
+set(DDAWN_ENABLE_INSTALL ON)
+
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
@@ -17,7 +24,7 @@ elseif(UNIX AND ARCHITECTURE STREQUAL "aarch64")
     set(VCPKG_TARGET_TRIPLET arm64-linux)
 endif()
 
-project(test-project LANGUAGES C CXX)
+project(webgrafix LANGUAGES C CXX)
 
 include(CheckIPOSupported)
 
@@ -37,14 +44,5 @@ set(CMAKE_CXX_FLAGS_DEBUG "-Wall -Wextra")
 # NOTE: This is reduntant, as the default is already "-O3"
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
-if(BUILD_TESTING)
-    enable_testing()
-    include(GoogleTest)
-    find_package(GTest CONFIG REQUIRED)
-
-    set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
-    include(CodeCoverage)
-    append_coverage_compiler_flags()
-endif()
-
+add_subdirectory(dawn)
 add_subdirectory(src)
