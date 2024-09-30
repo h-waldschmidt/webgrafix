@@ -1,9 +1,7 @@
 {
-    "name": "project-name",
+    "name": "webgrafix",
     "version-string": "1.0",
     "dependencies": [
-        "fmt",
-        "gtest",
         "spdlog"
     ]
 }

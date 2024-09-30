@@ -1,3 +1,6 @@
 [submodule "vcpkg"]
 	path = vcpkg
 	url = https://github.com/microsoft/vcpkg.git
+[submodule "dawn"]
+	path = dawn
+	url = https://dawn.googlesource.com/dawn
